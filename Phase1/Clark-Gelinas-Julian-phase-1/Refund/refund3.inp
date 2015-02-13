@@ -1,0 +1,6 @@
+The user will enter the amount to transfer. 
+The program will save each initial balance in separate variables. 
+A comparison will be made on both balances after a calculation is made by the test to verify that the balances are what they are supposed to be. 
+If they aren’t the transaction will be reversed and an error will be reported, if they are what they should be then the transaction goes through without a problem.
+Refund 1000 JamesG (CurrentBalance 1000) to HenryO (CurrentBalance 3000)
+Refund 1000000 JamesG (CurrentBalance 2000) to Henry) (CurrentBalance 0)

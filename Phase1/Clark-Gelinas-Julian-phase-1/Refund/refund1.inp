@@ -1,0 +1,6 @@
+Two usernames are submitted to be eligible for a refund. (eg JamesG123, HenryO122)
+The program searches the valid user file to locate both users. 
+If one or both of the users do not exist then an error is reported and the page reverts to the beginning waiting for the user to submit 2 more usernames.
+The transaction id is submitted as a failed transaction.
+JamesG123, HenryO122
+RipperoniPepporoni12, JamesG

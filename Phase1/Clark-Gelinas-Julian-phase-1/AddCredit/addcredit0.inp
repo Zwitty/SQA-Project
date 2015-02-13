@@ -1,0 +1,5 @@
+User attempts to add credit.
+Program checks if that user has Admin privileges.
+If the user has appropriate privileges the transaction continues, otherwise an error occurs telling them that they do not have the required privileges.
+Admin attempts to add credit.
+Standard user attempts to add credit.

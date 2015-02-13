@@ -1,0 +1,5 @@
+User enters the event and number of tickets to purchase. ( eg. Nine Inch Nails, 3)
+Program verifies that the event exists.
+A check is performed to make sure the number of tickets requested is less than or equal to the number of remaining tickets for that event.
+Event Name: Nine Inch Nails, Number of Tickets: 3
+Event Name: Souljaboi Tell’em To Go Home Later, Number of tickets: 5
