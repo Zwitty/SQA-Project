@@ -2,16 +2,21 @@
 
 using namespace std;
 
-void DisplayMainMenu();
+/* Variables */
+char userName[15];
+
+
+/* Functions */
+void displayMainMenu();
+void displayLogin();
 int getChoice();
 void createTransaction(char code[2], char userName[15], char userType[2], char credit[9]);
 void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9]);
 void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6]);
 
 int main()
-{
-  DisplayMainMenu();
-  getChoice();
+{ 
+  displayLogin();
   return 0; 
 }
 
@@ -63,22 +68,46 @@ void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15
 int getChoice()
 {
   int choice;
-  cin >> choice;
+  cin >> choice;  
   return choice;
 }
 
-void DisplayLogin()
+void displayLogin()
 {
   cout << "Username: ";
-  cout << "Password: ";
+  cin >> userName;
+  displayMainMenu();
 }
  
-void DisplayMainMenu()
+void displayMainMenu()
 {
-  cout << "Welcome to the Ticket Booking System please select and option below\n";
-  cout << "1 - Sell a ticket or tickets to an event\n";
-  cout << "2 - Buy a ticket or tickets to and event\n";
-  cout << "3 - Add credit into the system\n";
-  cout << "4 - Admin Options\n";
-  cout << "5 - Logout\n";
+  int choice = 0;
+  do{
+    cout << "Welcome to the Ticket Booking System please select and option below\n";
+    cout << "1 - Sell a ticket or tickets to an event\n";
+    cout << "2 - Buy a ticket or tickets to and event\n";
+    cout << "3 - Add credit into the system\n";
+    cout << "4 - Admin Options\n";
+    cout << "5 - Logout\n";
+    choice = getChoice();
+  }while ((choice < 1 || choice > 5));
+  if(choice == 1)
+  {
+    //sell tickets
+  }else if(choice == 2)
+  {
+    //Buy tickets
+  }else if (choice == 3)
+  {
+    //Add Credit
+  }else if (choice == 4)
+  {
+    //Admin
+  }else if (choice == 5)
+  {
+    //Logout
+  }else
+  {
+   // displayMainMenu();
+  }
 }
