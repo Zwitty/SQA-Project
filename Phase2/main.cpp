@@ -9,6 +9,7 @@ char userName[15];
 /* Functions */
 void displayMainMenu();
 void displayLogin();
+void displayAdminMenu();
 int getChoice();
 void createTransaction(char code[2], char userName[15], char userType[2], char credit[9]);
 void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9]);
@@ -82,7 +83,8 @@ void displayLogin()
 void displayMainMenu()
 {
   int choice = 0;
-  do{
+  do
+  {
     cout << "Welcome to the Ticket Booking System please select and option below\n";
     cout << "1 - Sell a ticket or tickets to an event\n";
     cout << "2 - Buy a ticket or tickets to and event\n";
@@ -102,12 +104,42 @@ void displayMainMenu()
     //Add Credit
   }else if (choice == 4)
   {
-    //Admin
+    displayAdminMenu();
   }else if (choice == 5)
   {
     //Logout
   }else
   {
    // displayMainMenu();
+  }
+}
+
+void displayAdminMenu()
+{
+  int choice = 0;
+  do
+  {
+    cout << "Welcome to the advanced privlages, please select one of the following options\n";
+    cout << "1 - Create a new user in the system\n";
+    cout << "2 - Delete a user in the system\n";
+    cout << "3 - Issue credit from to a buyers account from a seller (refund)\n";
+    cout << "4 - Return to main menu\n";
+    choice = getChoice();
+  }while ((choice < 1 || choice > 4));
+  if(choice == 1)
+  {
+    //Create new user
+  }else if(choice == 2)
+  {
+    //Delete User
+  }else if(choice == 3)
+  {
+    //Refund
+  }else if(choice == 4)
+  {
+    displayMainMenu();
+  }else
+  {
+     //Other
   }
 }
