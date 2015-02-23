@@ -4,9 +4,9 @@ using namespace std;
 
 void DisplayMainMenu();
 int getChoice();
-void createTransactionFile(string code, string userName, string userType, string credit);
-void createTransactionFile(string code, string buyUserName, string sellUserName, string credit);
-void createTransactionFile(string code, string event, string sellUserName, string numTickets, string price);
+void createTransaction(char code[2], char userName[15], char userType[2], char credit[9]);
+void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9]);
+void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6]);
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
  *  AA=Admin, FS=full-standard, BS=buy-standard, SS=sell standard
  * @param credit is the available credit for the buyer
  */
-void createTransactionFile(string code, string userName, string userType, string credit)
+void createTransaction(char code[2], char userName[15], char userType[2], char credit[9])
 {
   
 }
@@ -41,7 +41,7 @@ void createTransactionFile(string code, string userName, string userType, string
  * @param sellUserName is SSSSSSSSSSSSSSS is the seller's username
  * @param credit is CCCCCCCCCC is the refund credit.
  */  
-void createTransactionFile(string code, string buyUserName, string sellUserName, string credit)
+void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9])
 {
 
 }
@@ -56,7 +56,7 @@ void createTransactionFile(string code, string buyUserName, string sellUserName,
  * @param numTickets is TTT and the number of tickets for sale
  * @param price is PPPPP is the price of the tickets
  */
-void createTransactionFile(string code, string event, string sellUserName, string numTickets, string price)
+void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6])
 {
 
 }
