@@ -238,6 +238,9 @@ void displayMainMenu()
   displayMainMenu();
 }
 
+/*
+ * Displays the additional admin menu
+ */
 void displayAdminMenu()
 {
   int choice = 0;
@@ -252,12 +255,14 @@ void displayAdminMenu()
   }while ((choice < 1 || choice > 4));
   if(choice == 1)
   {
-    //Create new user
+    create();
   }else if(choice == 2)
   {
+    deleteTicket(); 
     //Delete User
   }else if(choice == 3)
   {
+    refund();
     //Refund
   }else if(choice == 4)
   {
@@ -265,5 +270,6 @@ void displayAdminMenu()
   }else
   {
      //Other
+     displayAdminMenu();
   }
 }
