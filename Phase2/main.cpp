@@ -1,3 +1,9 @@
+/*
+ * main front end file for the Software Quality Assurance Project
+ * Team name while(true)
+ *
+ * @authors Matthew Clark, James Gelinas, Harry Onggo
+ */
 #include <iostream>
 #include <fstream>
 
@@ -7,14 +13,22 @@ using namespace std;
 char userName[15];
 
 
-/* Functions */
+/* Menu Functions */
 void displayMainMenu();
 void displayLogin();
 void displayAdminMenu();
 int getChoice();
+
+/* Tranaction file writing functions */
 void createTransaction(char code[2], char userName[15], char userType[2], char credit[9]);
 void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9]);
 void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6]);
+
+/* Transaction building functions */
+void addCredit();
+void create();
+void deleteTicket();
+void endSession();
 
 int main()
 { 
@@ -71,6 +85,54 @@ void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15
 {
 
 }
+
+
+/*
+ * Gathers the information to complete a session end transaction
+ */
+void endSession()
+{
+  char code[3] = "00"; // end sessions code is 00
+  char userType[3] = "AA"; //For testing we will use ADMIN
+  char credit[10] = "123456789"; // for testing we are adding a large amount
+  createTransaction(code, userName, userType, credit);
+}
+
+
+/*
+ * Gathers the information to compile a trasaction to create a ticket
+ */
+void create()
+{
+  char code[3] = "01"; // create's code is 01
+  char userType[3] = "AA"; //For testing we will use ADMIN
+  char credit[10] = "123456789"; // for testing we are adding a large amount
+  createTransaction(code, userName, userType, credit);
+}
+
+/*
+ * Gathers the information to compile a trasaction to delete a ticket 
+ */
+void deleteTicket()
+{
+  char code[3] = "02"; // delete's code is 02
+  char userType[3] = "AA"; //For testing we will use ADMIN
+  char credit[10] = "123456789"; // for testing we are adding a large amount
+  createTransaction(code, userName, userType, credit);
+}
+
+/*
+ * Gathers the information to compile a trasaction to add Credit to the 
+ * transaction file
+ */
+void addCredit()
+{
+  char code[3] = "06"; // Add credit's code is 06
+  char userType[3] = "AA"; //For testing we will use ADMIN
+  char credit[10] = "123456789"; // for testing we are adding a large amount
+  createTransaction(code, userName, userType, credit);
+}
+
 int getChoice()
 {
   int choice;
@@ -106,11 +168,7 @@ void displayMainMenu()
     //Buy tickets
   }else if (choice == 3)
   {
-    // Add Credit
-    char code[3] = "06";
-    char userType[3] = "AA";
-    char credit[10] = "123456789";
-    createTransaction(code, userName, userType, credit);
+    addCredit();
   }else if (choice == 4)
   {
     displayAdminMenu();
