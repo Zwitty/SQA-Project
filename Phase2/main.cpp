@@ -29,6 +29,8 @@ void addCredit();
 void create();
 void deleteTicket();
 void endSession();
+void sellTicket();
+void buyTicket();
 
 int main()
 { 
@@ -68,7 +70,11 @@ void createTransaction(char code[2], char userName[15], char userType[2], char c
  */  
 void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9])
 {
-
+  ofstream transactionFile;
+  transactionFile.open ("transaction.etf");
+  transactionFile << code << "_" << buyUserName << "_" << sellUserName << "_" << credit << '\n';
+  transactionFile.close();
+  return;  
 }
 
 /**
@@ -83,6 +89,12 @@ void createRefundTransaction(char code[2], char buyUserName[15], char sellUserNa
  */
 void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6])
 {
+  ofstream transactionFile;
+  transactionFile.open ("transaction.etf");
+  transactionFile << code << "_" << event << "_" << sellUserName << "_" << numTickets << "_" << price << '\n';
+  transactionFile.close();
+  return;  
+
 
 }
 
@@ -119,6 +131,42 @@ void deleteTicket()
   char userType[3] = "AA"; //For testing we will use ADMIN
   char credit[10] = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
+}
+
+/*
+ * Gathers the information to compile a trasaaction to sell 
+ */
+void sellTicket()
+{
+  char code[3] = "03"; // Create a sell transaction
+  char event[20] = "EEEEEEEEEEEEEEEEEE"; //For testing we will use EEEE
+  char numTickets[4] = "50"; // 50 tickets will be the test amount
+  char price[7] = "1234";
+  createSellBuyTransaction(code, event, userName, numTickets, price);
+}
+
+/*
+ * Gathers the information to compile a trasaaction to sell 
+ */
+void buyTicket()
+{
+  char code[3] = "04"; // code for a buy transaction is 04
+  char event[20] = "EEEEEEEEEEEEEEEEEE"; //For testing we will use EEEE
+  char numTickets[4] = "50"; // 50 tickets will be the test amount
+  char price[7] = "1234";
+  createSellBuyTransaction(code, event, userName, numTickets, price);
+}
+
+/*
+ * Gathers the information to compile a refund transaction file
+ */
+void refund()
+{
+  char code[3] = "05"; // Refunds code is 05
+  char buyer[15] = "BUYER";
+  char seller[15] = "SELLER";
+  char credit[10] = "123456789"; // for testing we are adding a large amount
+  createRefundTransaction(code, buyer, seller, credit);
 }
 
 /*
