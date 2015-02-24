@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -34,7 +35,11 @@ int main()
  */
 void createTransaction(char code[2], char userName[15], char userType[2], char credit[9])
 {
-  
+  ofstream transactionFile;
+  transactionFile.open ("transaction.etf");
+  transactionFile << code << "_" << userName << "_" << userType << "_" << credit << '\n';
+  transactionFile.close();
+  return;  
 }
 
 /**
@@ -101,7 +106,11 @@ void displayMainMenu()
     //Buy tickets
   }else if (choice == 3)
   {
-    //Add Credit
+    // Add Credit
+    char code[3] = "06";
+    char userType[3] = "AA";
+    char credit[10] = "123456789";
+    createTransaction(code, userName, userType, credit);
   }else if (choice == 4)
   {
     displayAdminMenu();
