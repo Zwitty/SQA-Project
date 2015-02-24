@@ -52,7 +52,7 @@ int main()
 void createTransaction(char code[2], char userName[15], char userType[2], char credit[9])
 {
   ofstream transactionFile;
-  transactionFile.open ("transaction.etf");
+  transactionFile.open ("transaction.etf", ofstream::out | ofstream::app);
   transactionFile << code << "_" << userName << "_" << userType << "_" << credit << '\n';
   transactionFile.close();
   return;  
@@ -71,7 +71,7 @@ void createTransaction(char code[2], char userName[15], char userType[2], char c
 void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9])
 {
   ofstream transactionFile;
-  transactionFile.open ("transaction.etf");
+  transactionFile.open ("transaction.etf", ofstream::out | ofstream::app);
   transactionFile << code << "_" << buyUserName << "_" << sellUserName << "_" << credit << '\n';
   transactionFile.close();
   return;  
@@ -90,14 +90,13 @@ void createRefundTransaction(char code[2], char buyUserName[15], char sellUserNa
 void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6])
 {
   ofstream transactionFile;
-  transactionFile.open ("transaction.etf");
+  transactionFile.open ("transaction.etf", ofstream::out | ofstream::app);
   transactionFile << code << "_" << event << "_" << sellUserName << "_" << numTickets << "_" << price << '\n';
   transactionFile.close();
   return;  
 
 
 }
-
 
 /*
  * Gathers the information to complete a session end transaction
@@ -109,7 +108,6 @@ void endSession()
   char credit[10] = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
 }
-
 
 /*
  * Gathers the information to compile a trasaction to create a ticket
@@ -181,6 +179,9 @@ void addCredit()
   createTransaction(code, userName, userType, credit);
 }
 
+/*
+ * Get the choice the user has selected in a displayed menu
+ */
 int getChoice()
 {
   int choice;
@@ -188,13 +189,19 @@ int getChoice()
   return choice;
 }
 
+/*
+ * Display the login screen and ask for a username for the session
+ */
 void displayLogin()
 {
   cout << "Username: ";
   cin >> userName;
   displayMainMenu();
 }
- 
+
+/*
+ * Displays the main menu of the application
+ */ 
 void displayMainMenu()
 {
   int choice = 0;
@@ -210,10 +217,10 @@ void displayMainMenu()
   }while ((choice < 1 || choice > 5));
   if(choice == 1)
   {
-    //sell tickets
+    sellTicket();
   }else if(choice == 2)
   {
-    //Buy tickets
+    buyTicket();
   }else if (choice == 3)
   {
     addCredit();
@@ -222,11 +229,13 @@ void displayMainMenu()
     displayAdminMenu();
   }else if (choice == 5)
   {
-    //Logout
+    endSession();
+    return;
   }else
   {
-   // displayMainMenu();
+   displayMainMenu();
   }
+  displayMainMenu();
 }
 
 void displayAdminMenu()
