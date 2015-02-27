@@ -174,7 +174,7 @@ void refund()
 void addCredit()
 {
   char code[3] = "06"; // Add credit's code is 06
-  char userType[3] = "AA"; //For testing we will use ADMIN
+  char userType[3] = "AA"; //For testing we will use only ADMIN
   char credit[10] = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
 }
