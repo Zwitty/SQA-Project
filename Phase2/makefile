@@ -3,6 +3,8 @@ all : a.out
 a.out : main.cpp
 	g++ main.cpp
 	
+cleanAll : clean cleanTrans
+
 clean : 
 	rm -f *.out
 
