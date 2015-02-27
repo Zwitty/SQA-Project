@@ -1,8 +1,8 @@
 /*
  * main front end file for the Software Quality Assurance Project
  * Team name while(true)
- *
- * @authors Matthew Clark, James Gelinas, Harry Onggo
+ * 
+ * @authors Matthew Clark, James Gelinas, Henry Onggo
  */
 #include <iostream>
 #include <fstream>
