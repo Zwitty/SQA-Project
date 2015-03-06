@@ -1,0 +1,5 @@
+User inputs how many tickets are for sale. (eg. 50)
+Program checks that the available tickets are 100 or less.
+As long as there are no more than 100 tickets for sale the transaction is accepted.
+100
+1000

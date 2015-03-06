@@ -1,0 +1,3 @@
+Have a test transaction ready to be inputted.
+Search for the transaction ID from the recently inputted transaction in the file.
+If the transaction is there then the test passes otherwise it fails.

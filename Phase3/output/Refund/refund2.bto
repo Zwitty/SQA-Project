@@ -1,0 +1,1 @@
+If test passes the transaction ID is passed to the transaction file, otherwise it is not.
