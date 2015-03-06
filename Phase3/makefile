@@ -11,6 +11,9 @@ clean :
 cleanTrans :
 	rm -f *.etf
 	
-test :
+test : a.out
 	./a.out
 
+testLogin0 : a.out
+	echo "Running Test for Login"
+	./a.out < login0.inp
