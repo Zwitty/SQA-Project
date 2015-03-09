@@ -215,6 +215,7 @@ void displayLogin()
 {
   cout << "Username: ";
   cin >> userName;
+  users[0].setUserName(userName);
   displayMainMenu();
 }
 
