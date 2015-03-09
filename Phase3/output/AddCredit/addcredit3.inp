@@ -1,5 +1,4 @@
-Attempt to add over a thousand dollars to an account. (eg. 1001)
-If it fails, the test passes otherwise it fails.
-Attempt to add 1000 dollars to the account. (eg 1000)
-Add 1000 Credit
-Add 1001 Credit
+myUserName
+3
+1001
+5
