@@ -14,23 +14,53 @@ cleanTrans :
 test : a.out
 	./a.out
 
-testLogin : testLogin0 testLogin1 testLogin2 testLogin3 testLogin4 testLogin5 testLogin6 testLogin7 testLogin8
-testLogin0 : a.out
+login : login0 login1 login2 login3 login4 login5 login6 login7 login8
+
+# ================================================
+#                LOGIN TESTS
+# ================================================
+
+#check if a current user is logged in
+login0 : a.out
 	echo "Running Test for Login"
-	./a.out < login0.inp
+	./a.out < login0.inp > output/Login/login0.bto
 
-testLogin1 : a.out
 
-testLogin2 : a.out
+#Asks user for username
+login1 : a.out
 
-testLogin3 : a.out
+#Check if username exists
+login2 : a.out
 
-testLogin4 : a.out
+#reads in the users account file
+login3 : a.out
 
-testLogin5 : a.out
+#Check if password matches the username password
+login4 : a.out
 
-testLogin6 : a.out
+#Test if we can login as a normal user
+login5 : a.out
 
-testLogin7 : a.out
+#Test if we can log in as an admin
+login6 : a.out
 
-testLogin8 : a.out
+#Test that we cannot make privileged transactions as a standard user
+login7 : a.out
+
+#Test that we can make privileged transactions as an admin user
+login8 : a.out
+
+# ================================================
+#                LOGOUT TESTS
+# ================================================
+
+#check if a user is currently logged in.
+logout0 : a.out
+
+#Write out the daily transaction file
+logout1 : a.out
+
+#Test if we can make another transaction
+logout2 : a.out
+
+
