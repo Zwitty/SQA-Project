@@ -6,12 +6,30 @@
  */
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
-/* Variables */
-char userName[15];
+class Users
+{
+  string userName;
+  string userType;
+  string credit;
 
+public:
+  void setUserName(string name) {userName = name;}
+  string getUserName() {return userName;}
+  
+  void setUserType(string type) {userType = type;}
+  string getUserType() {return userName;}
+  
+  void setCredit(string cred) {credit = cred;}
+  string getCredit() {return credit;}
+};
+
+/* Variables */
+string userName;
+Users users[10];
 
 /* Menu Functions */
 void displayMainMenu();
@@ -20,9 +38,9 @@ void displayAdminMenu();
 int getChoice();
 
 /* Tranaction file writing functions */
-void createTransaction(char code[2], char userName[15], char userType[2], char credit[9]);
-void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9]);
-void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6]);
+void createTransaction(string code, string userName, string userType, string credit);
+void createRefundTransaction(string code, string buyUserName, string sellUserName, string credit);
+void createSellBuyTransaction(string code, string event, string sellUserName,string numTickets, string price);
 
 /* Transaction building functions */
 void addCredit();
@@ -33,7 +51,8 @@ void sellTicket();
 void buyTicket();
 
 int main()
-{ 
+{
+  
   displayLogin();
   return 0; 
 }
@@ -49,7 +68,7 @@ int main()
  *  AA=Admin, FS=full-standard, BS=buy-standard, SS=sell standard
  * @param credit is the available credit for the buyer
  */
-void createTransaction(char code[2], char userName[15], char userType[2], char credit[9])
+void createTransaction(string code, string userName, string userType, string credit)
 {
   ofstream transactionFile;
   transactionFile.open ("transaction.etf", ofstream::out | ofstream::app);
@@ -68,7 +87,7 @@ void createTransaction(char code[2], char userName[15], char userType[2], char c
  * @param sellUserName is SSSSSSSSSSSSSSS is the seller's username
  * @param credit is CCCCCCCCCC is the refund credit.
  */  
-void createRefundTransaction(char code[2], char buyUserName[15], char sellUserName[15], char credit[9])
+void createRefundTransaction(string code, string buyUserName, string sellUserName, string credit)
 {
   ofstream transactionFile;
   transactionFile.open ("transaction.etf", ofstream::out | ofstream::app);
@@ -87,7 +106,7 @@ void createRefundTransaction(char code[2], char buyUserName[15], char sellUserNa
  * @param numTickets is TTT and the number of tickets for sale
  * @param price is PPPPP is the price of the tickets
  */
-void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15],char numTickets[3], char price[6])
+void createSellBuyTransaction(string code, string event, string sellUserName,string numTickets, string price)
 {
   ofstream transactionFile;
   transactionFile.open ("transaction.etf", ofstream::out | ofstream::app);
@@ -103,9 +122,9 @@ void createSellBuyTransaction(char code[2], char event[19], char sellUserName[15
  */
 void endSession()
 {
-  char code[3] = "00"; // end sessions code is 00
-  char userType[3] = "AA"; //For testing we will use ADMIN
-  char credit[10] = "123456789"; // for testing we are adding a large amount
+  string code = "00"; // end sessions code is 00
+  string userType = "AA"; //For testing we will use ADMIN
+  string credit = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
 }
 
@@ -114,9 +133,9 @@ void endSession()
  */
 void create()
 {
-  char code[3] = "01"; // create's code is 01
-  char userType[3] = "AA"; //For testing we will use ADMIN
-  char credit[10] = "123456789"; // for testing we are adding a large amount
+  string code = "01"; // create's code is 01
+  string userType = "AA"; //For testing we will use ADMIN
+  string credit = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
 }
 
@@ -125,9 +144,9 @@ void create()
  */
 void deleteTicket()
 {
-  char code[3] = "02"; // delete's code is 02
-  char userType[3] = "AA"; //For testing we will use ADMIN
-  char credit[10] = "123456789"; // for testing we are adding a large amount
+  string code = "02"; // delete's code is 02
+  string userType = "AA"; //For testing we will use ADMIN
+  string credit = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
 }
 
@@ -136,10 +155,10 @@ void deleteTicket()
  */
 void sellTicket()
 {
-  char code[3] = "03"; // Create a sell transaction
-  char event[20] = "EEEEEEEEEEEEEEEEEE"; //For testing we will use EEEE
-  char numTickets[4] = "50"; // 50 tickets will be the test amount
-  char price[7] = "1234";
+  string code = "03"; // Create a sell transaction
+  string event = "EEEEEEEEEEEEEEEEEE"; //For testing we will use EEEE
+  string numTickets = "50"; // 50 tickets will be the test amount
+  string price = "1234";
   createSellBuyTransaction(code, event, userName, numTickets, price);
 }
 
@@ -148,10 +167,10 @@ void sellTicket()
  */
 void buyTicket()
 {
-  char code[3] = "04"; // code for a buy transaction is 04
-  char event[20] = "EEEEEEEEEEEEEEEEEE"; //For testing we will use EEEE
-  char numTickets[4] = "50"; // 50 tickets will be the test amount
-  char price[7] = "1234";
+  string code = "04"; // code for a buy transaction is 04
+  string event = "EEEEEEEEEEEEEEEEEE"; //For testing we will use EEEE
+  string numTickets = "50"; // 50 tickets will be the test amount
+  string price = "1234";
   createSellBuyTransaction(code, event, userName, numTickets, price);
 }
 
@@ -160,10 +179,10 @@ void buyTicket()
  */
 void refund()
 {
-  char code[3] = "05"; // Refunds code is 05
-  char buyer[15] = "BUYER";
-  char seller[15] = "SELLER";
-  char credit[10] = "123456789"; // for testing we are adding a large amount
+  string code = "05"; // Refunds code is 05
+  string buyer = "BUYER";
+  string seller = "SELLER";
+  string credit = "123456789"; // for testing we are adding a large amount
   createRefundTransaction(code, buyer, seller, credit);
 }
 
@@ -173,9 +192,9 @@ void refund()
  */
 void addCredit()
 {
-  char code[3] = "06"; // Add credit's code is 06
-  char userType[3] = "AA"; //For testing we will use only ADMIN
-  char credit[10] = "123456789"; // for testing we are adding a large amount
+  string code = "06"; // Add credit's code is 06
+  string userType = "AA"; //For testing we will use only ADMIN
+  string credit = "123456789"; // for testing we are adding a large amount
   createTransaction(code, userName, userType, credit);
 }
 
