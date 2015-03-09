@@ -38,40 +38,55 @@ refund : refund0 refund1 refund2 refund3
 
 addcredit : addcredit0 addcredit1 addcredit2 addcredit3
 
-
 # ================================================
 #                LOGIN TESTS
 # ================================================
 
 # check if a current user is logged in
 login0 : a.out
-	echo "Running Test for Login"
+	echo "Running Test for login0"
 	./a.out < login0.inp > output/Login/login0.bto
-
 
 # Asks user for username
 login1 : a.out
+	echo "Running Test for login1"
+	./a.out < login1.inp > output/Login/login1.bto
 
 # Check if username exists
 login2 : a.out
+	echo "Running Test for login2"
+	./a.out < login2.inp > output/Login/login2.bto
 
 # Reads in the users account file
 login3 : a.out
+	echo "Running Test for login3"
+	./a.out < login3.inp > output/Login/login3.bto
+
 
 # Check if password matches the username password
 login4 : a.out
+	echo "Running Test for login4"
+	./a.out < login4.inp > output/Login/login4.bto
 
 # Test if we can login as a normal user
 login5 : a.out
+	echo "Running Test for login5"
+	./a.out < login5.inp > output/Login/login5.bto
 
 # Test if we can log in as an admin
 login6 : a.out
+	echo "Running Test for login6"
+	./a.out < login6.inp > output/Login/login6.bto
 
 # Test that we cannot make privileged transactions as a standard user
 login7 : a.out
+	echo "Running Test for login7"
+	./a.out < login7.inp > output/Login/login7.bto
 
 # Test that we can make privileged transactions as an admin user
 login8 : a.out
+	echo "Running Test for login8"
+	./a.out < login8.inp > output/Login/login8.bto
 
 # ================================================
 #                LOGOUT TESTS
