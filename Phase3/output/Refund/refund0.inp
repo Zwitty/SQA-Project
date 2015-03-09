@@ -1,5 +1,4 @@
-User will request a refund and the two usernames in question will be submitted
-The program will verify that a transaction can occur between these two users.
-The program will also check that the refund will not put a user over the maximum amount of credit allowed and it will also check that the user providing the refund will not go into a deficit by allowing the refund to occur.
-Refund From JamesG123, Henry0122 1000
-Refund From JazzHandz, Jayz 1000000
+myUserName
+4
+3
+5
