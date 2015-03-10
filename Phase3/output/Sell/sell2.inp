@@ -1,4 +1,12 @@
-User inputs a price point. (eg 500)
-Input is checked to see if it is valid.
+StandardSell
+1
+Nine Inch Nails
+3
 999.99
+5
+StandardSell
+1
+Nine Inch Nails
+3
 1001
+5

@@ -1,4 +1,6 @@
-User will input all the ticket sales information.
-Separate variables will be used to store all information.
-Transaction will be sent to the file.
-Comparisons will occur between the transaction data and the individual variables to test if the information is the same or not.
+StandardSell
+1
+Nine Inch Nails
+100
+300
+5

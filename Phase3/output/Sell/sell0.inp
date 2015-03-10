@@ -1,4 +1,12 @@
-Attempt to post a ticket for sale.
-User privileges are inspected.
-Privilege = admin
-Privilege = standard-buy
+AdminUser
+1
+Nine Inch Nails
+3
+100
+5
+StandardBuy
+1
+Nine Inch Nails
+3
+100
+5

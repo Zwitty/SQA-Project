@@ -1,6 +1,9 @@
-User attempts to start another sell session before finalizing current one.
-Program stops it saying it must not navigate the page or else it will lose everything.
-If user navigates away transaction is cancelled, and a new one begins.
-Cancelled transaction is recorded in the file.
-Close the current sell page, open another one.
-Try to open a new sell page whilst inside of a current sell page.
+StandardSell
+1
+Nine Inch Nails
+1
+Nine Inch Nails
+9
+100
+5
+
