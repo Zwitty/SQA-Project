@@ -1,1 +1,17 @@
-If test passes the transaction ID is passed to the transaction file, otherwise it is not.
+Username: Welcome to the Ticket Booking System please select and option below
+1 - Sell a ticket or tickets to an event
+2 - Buy a ticket or tickets to and event
+3 - Add credit into the system
+4 - Admin Options
+5 - Logout
+Welcome to the advanced privlages, please select one of the following options
+1 - Create a new user in the system
+2 - Delete a user in the system
+3 - Issue credit from to a buyers account from a seller (refund)
+4 - Return to main menu
+Welcome to the Ticket Booking System please select and option below
+1 - Sell a ticket or tickets to an event
+2 - Buy a ticket or tickets to and event
+3 - Add credit into the system
+4 - Admin Options
+5 - Logout

@@ -1,3 +1,6 @@
-Enter session type:
-Session terminated
-Logout successful
+Username: Welcome to the Ticket Booking System please select and option below
+1 - Sell a ticket or tickets to an event
+2 - Buy a ticket or tickets to and event
+3 - Add credit into the system
+4 - Admin Options
+5 - Logout
