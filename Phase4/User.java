@@ -22,6 +22,14 @@ public class User {
 		credit = newCredit;
 	}
 
+	public void buyTicket(double ticketPrice){
+		credit -= ticketPrice;
+	}
+
+	public void sellTicket(double ticketPrice){
+		credit += ticketPrice;
+	}
+
 	public String getUserType(){
 		return userType;
 	}
