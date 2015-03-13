@@ -5,7 +5,7 @@ public class Ticket
 	public double price;
 	public int quantity;
 
-	public Ticket(String newSeller, String newBuyer, double newPrice, int newQuantity)
+	public Ticket(User newSeller, User newBuyer, double newPrice, int newQuantity)
 	{
 		seller = newSeller;
 		buyer = newBuyer;
@@ -13,24 +13,44 @@ public class Ticket
 		quantity = newQuantity;
 	}
 
-	public void setNewSeller(String newSeller)
+	public void setSeller(User newSeller)
 	{
 		seller = newSeller;
 	}
 
-	public void setNewBuyer(String newBuyer)
+	public void setBuyer(User newBuyer)
 	{
 		buyer = newBuyer;
 	}
 
-	public void setNewPrice(double newPrice)
+	public void setPrice(double newPrice)
 	{
 		price = newPrice;
 	}
 
-	public void setNewQuantity(int newQuantity)
+	public void setQuantity(int newQuantity)
 	{
 		quantity = newQuantity;
+	}
+
+	public User getSeller()
+	{
+		return seller;
+	}
+
+	public User getBuyer()
+	{
+		return buyer;
+	}
+
+	public double getPrice();
+	{
+		return price;
+	}
+
+	public double getQuantity();
+	{
+		return quantity;
 	}
 
 }
