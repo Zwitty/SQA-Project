@@ -15,7 +15,6 @@ public class BackEnd {
 		// 03 Sell 04 Buy
 		// Reads in the transaction log file for processing
 		BufferedReader in;
-		try {
 			in = new BufferedReader(new FileReader("transactionlog.txt"));
 	
 		String str=null;
@@ -25,10 +24,6 @@ public class BackEnd {
 		}
 		// linesArray is our list of transactions to process
 		String[] linesArray = lines.toArray(new String[lines.size()]);
-		
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 
 	}
 }
