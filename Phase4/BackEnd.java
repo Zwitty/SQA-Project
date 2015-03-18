@@ -1,5 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.*;
@@ -47,7 +50,26 @@ public class BackEnd {
 	public static void refund(String currentTrans){
 		
 	}
+
+	/* This method writes the transaction to the daily log file
+	 * @param: currentTrans is the transaction that will be added to the daily log file
+	 */
+	public static void writeTo(String currentTrans) throws IOException{
 	
+		String content = currentTrans;
+		 
+		File file = new File("mergedDailyTransactions.txt");
+
+		// if file doesn't exists, then create it
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(file.getAbsoluteFile());
+		BufferedWriter bw = new BufferedWriter(fw);
+		bw.write(content);
+		bw.close();
+	}
 	public static void main(String[] args) throws IOException{
 		//System.out.println("Hello World");
 		//User test = new User("AA","MyUserName",10.00);
@@ -97,6 +119,7 @@ public class BackEnd {
 			} else {
 				System.out.println("Session Ended");
 			}
+			writeTo(currentTrans); // Writes the transaction into the daily merged transactions
 			j++; // incrementing j to continue moving through the list of transactions
 		} // end of while loop
 	}
