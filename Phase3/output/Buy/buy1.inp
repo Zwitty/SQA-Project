@@ -1,5 +1,8 @@
-User puts in an amount of tickets to purchase. (eg. 3)
-Compare the users number to 4.
-If the users number of tickets is greater than 4 transaction fails.
-Buy 3 tickets
-Buy 5 tickets
+StandardBuy
+2
+4
+5
+StandardBuy
+2
+6
+5
