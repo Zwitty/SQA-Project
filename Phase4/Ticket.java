@@ -1,5 +1,5 @@
-public class Ticket
-{
+public class Ticket{
+
 	public User seller;
 	public User buyer;
 	public double price;
@@ -42,5 +42,9 @@ public class Ticket
 
 	public int getQuantity(){
 		return quantity;
+	}
+
+	public String toString(){
+		return seller.getName() + "," + buyer.getName() + "," String.valueOf(price) + "," + string.valueOf(quantity);
 	}
 }
