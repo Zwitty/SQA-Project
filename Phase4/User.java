@@ -41,4 +41,8 @@ public class User {
 	public double getCredit(){
 		return credit;
 	}
+
+	public String toString(){
+		return userType + "," + name + "," + String.valueOf(credit);
+	}
 }
