@@ -203,7 +203,7 @@ public class BackEnd {
         Double newTicketNum = ticketsAvail - numTickets; // calculates new number of available tickets
 
         // sets new quantity of available tickets in ticket list
-        ticketList.get(findTicketPosition(event).setQuantity(newTicketNum));
+        ticketList.get(findTicketPosition(event)).setQuantity(newTicketNum);
         // sets new credit of the seller
         userList.get(findUserPosition(seller)).setCredit(creditToAdd);
 	}
