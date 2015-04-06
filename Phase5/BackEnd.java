@@ -125,9 +125,20 @@ public class BackEnd {
 			//Ticket newTicket = new Ticket(type, name, credit);
 			//userList.add(newUser);
 		}
-
-	
 	}
+    
+    /* returns the User object of a given username
+     *
+     */
+    public static User findUser(String userName){
+   
+        for(User i : userList){
+            if(i.getName().equals(userName)){
+                return i;
+            }
+        }
+        return null;
+    }
 
 	/* This method carries out the buy function.
 	 * @param: currentTrans is the transaction that is being worked on
@@ -154,7 +165,7 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void deleteUser(String currentTrans) {
-		
+	    	
 	}
 	
 	/* This method creates new users and adds them to the user file
