@@ -130,7 +130,36 @@ public class BackEnd {
 			ticketList.add(newTicket);
 		}
 	}
+
+    /* returns the User object of a given username
+     *
+     */
+    public static Ticket findTicket(String eventName){
+   
+        for(Ticket i : ticketList){
+            if(i.getEventName().equals(eventName)){
+                return i;
+            }
+        }
+        return null;
+    }
     
+    /* returns the position in the list of a given username
+     *
+     */
+    public static int findTicketPosition(String ticketName){
+        int count = 0;
+        for(Ticket i : ticketList){
+            if(i.getEventName().equals(ticketName)){
+                return count;
+            }else{
+                count ++;
+            }
+        }
+        return -1;
+
+    }
+
     /* returns the User object of a given username
      *
      */
@@ -176,7 +205,13 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void sell(String currentTrans){
-		
+	    String[] trans = currentTrans.split("_");
+        
+        String seller = trans[2];
+        double price = Double.parseDouble(trans[4]);
+
+        userList.get(findUserPosition(seller)).sellTicket(price);
+ 
 	}
 	
 	/* This method carries out the add credit function.
