@@ -267,11 +267,25 @@ public class BackEnd {
 
 	}
 	
-	/* This method carries out the refund fucntion
+	/* This method carries out the refund function
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void refund(String currentTrans){
-		
+		        String[] trans = currentTrans.split("_");
+        
+        String buyer = trans[1];
+        String seller = trans[2]
+        double credit = Double.parseDouble(trans[3]);
+
+        //adding buyer's credit
+        double buyerCredit = userList.get(findUserPosition(buyer)).getCredit();
+        double newBuyerCredit = buyerCredit + credit;
+        userList.get(findUserPosition(buyer)).setCredit(newBuyerCredit);
+
+        //reducing seller's credit
+        double sellerCredit = userList.get(findUserPosition(seller)).getCredit();
+        double newSellerCredit = sellerCredit - credit;
+        userList.get(findUserPosition(seller)).setCredit(newSellerCredit);
 	}
 
 	/* This method writes the transaction to the daily log file
