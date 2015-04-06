@@ -195,15 +195,15 @@ public class BackEnd {
 	public static void buy(String currentTrans){
         String seller = currentTrans.substring(24,37);
         String event = currentTrans.substring(4,23);
-        Double ticketsAvail = Double.parseDouble(ticketList.getQuantity());
-        Double numTickets = Double.parseDouble(currentTrans.substring(38,41));
+        int ticketsAvail = ticketList.get(findTicketPosition(event)).getQuantity();
+        int numTickets = Integer.parseInt(currentTrans.substring(38,41));
         Double price = Double.parseDouble(currentTrans.substring(43,48));
-        Double userCredit = userList[findUserPosition(userName)].getCredit();
+        Double userCredit = userList.get(findUserPosition(seller)).getCredit();
         Double creditToAdd =  (numTickets*price) + userCredit; // calculates credit to add to seller
-        Double newTicketNum = ticketsAvail - numTickets; // calculates new number of available tickets
+        int newTicketNum = ticketsAvail - numTickets; // calculates new number of available tickets
 
         // sets new quantity of available tickets in ticket list
-        ticketList.get(findTicketPosition(event).setQuantity(newTicketNum));
+        ticketList.get(findTicketPosition(event)).setQuantity(newTicketNum);
         // sets new credit of the seller
         userList.get(findUserPosition(seller)).setCredit(creditToAdd);
 	}
@@ -282,7 +282,7 @@ public class BackEnd {
 		        String[] trans = currentTrans.split(" ");
         
         String buyer = trans[1];
-        String seller = currentTrans.substring(19,34)
+        String seller = currentTrans.substring(19,34);
         double credit = Double.parseDouble(currentTrans.substring(35,44));
 
         //adding buyer's credit
