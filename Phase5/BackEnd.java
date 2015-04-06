@@ -193,12 +193,19 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void buy(String currentTrans){
-        String[] trans = currentTrans.split(" ");
-        String event = trans[1];
-        String buyer = trans[2];
-        double price = Double.parseDouble(trans[4]);
+        String seller = currentTrans.substring(24,37);
+        String event = currentTrans.substring(4,23);
+        Double ticketsAvail = Double.parseDouble(ticketList.getQuantity());
+        Double numTickets = Double.parseDouble(currentTrans.substring(38,41));
+        Double price = Double.parseDouble(currentTrans.substring(43,48));
+        Double userCredit = userList[findUserPosition(userName)].getCredit();
+        Double creditToAdd =  (numTickets*price) + userCredit; // calculates credit to add to seller
+        Double newTicketNum = ticketsAvail - numTickets; // calculates new number of available tickets
 
-        userList.get(findUserPosition(buyer)).buyTicket(price);
+        // sets new quantity of available tickets in ticket list
+        ticketList.get(findTicketPosition(event).setQuantity(newTicketNum));
+        // sets new credit of the seller
+        userList.get(findUserPosition(seller)).setCredit(creditToAdd);
 	}
 	
 	/* This method carries out the sell function.
