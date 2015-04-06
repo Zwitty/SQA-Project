@@ -272,7 +272,7 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void refund(String currentTrans){
-		        String[] trans = currentTrans.split("_");
+		        String[] trans = currentTrans.split(" ");
         
         String buyer = trans[1];
         String seller = trans[2]
