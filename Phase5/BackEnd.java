@@ -117,16 +117,16 @@ public class BackEnd {
 		
 		for(int i = 0; i < linesArray.length; i++){
 			String[] tmp = linesArray[i].split(",");
-			String buyer = tmp[0];
-			String seller = tmp[1];
-			double price = Double.parseDouble(tmp[2]);
-			int quantity = Integer.parseInt(tmp[3]);
-            String eventName = tmp[4];
+			//String buyer = tmp[0];
+			String seller = tmp[0];
+			double price = Double.parseDouble(tmp[1]);
+			int quantity = Integer.parseInt(tmp[2]);
+            String eventName = tmp[3];
 
-			User newBuyer = findUser(buyer);
+			//User newBuyer = findUser(buyer);
             User newSeller = findUser(seller);
 
-            Ticket newTicket = new Ticket(newSeller, newBuyer, price, quantity, eventName);
+            Ticket newTicket = new Ticket(newSeller, price, quantity, eventName);
 			ticketList.add(newTicket);
 		}
 	}
@@ -193,8 +193,8 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void buy(String currentTrans){
-        String[] trans = currentTrans.split("_");
-        
+        String[] trans = currentTrans.split(" ");
+        String event = trans[1];
         String buyer = trans[2];
         double price = Double.parseDouble(trans[4]);
 
@@ -205,12 +205,16 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void sell(String currentTrans){
-	    String[] trans = currentTrans.split("_");
+	    String[] trans = currentTrans.split(" ");
         
-        String seller = trans[2];
-        double price = Double.parseDouble(trans[4]);
+        String seller = currentTrans.substring(24,37);
+        seller.trim(); // trims the whitespaces at the end of seller
+        String event = currentTrans.substring(4,23);
+        event.trim(); // trims whitespaces at the end of event
+        int numTickets = Integer.parseInt(currentTrans.substring(38,41));
+        double price = Double.parseDouble(currentTrans.substring(43,48));
 
-        userList.get(findUserPosition(seller)).sellTicket(price);
+        ticetList.add(findUserPosition(seller)).sellTicket(price);
  
 	}
 	
