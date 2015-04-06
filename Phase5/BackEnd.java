@@ -218,7 +218,15 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void addCredit(String currentTrans){
-		
+	
+    	String[] splited = currentTrans.split(" ");
+    	String userName = splited[1];
+    	String userType = currentTrans.substring(19,21);
+    	Double creditToAdd = Double.parseDouble(currentTrans.substring(22,31));
+    	Double userCredit = userList[findUserPosition(userName)].getCredit();
+    	Double newUserCredit = creditToAdd + userCredit;
+    	userList[findUserPosition(userName)].setCredit(newUserCredit);
+    		
 	}
 	
 	/* This method carries out the delete a user function
