@@ -117,16 +117,16 @@ public class BackEnd {
 		
 		for(int i = 0; i < linesArray.length; i++){
 			String[] tmp = linesArray[i].split(",");
-			//String buyer = tmp[0];
+			String buyer = tmp[1];
 			String seller = tmp[0];
-			double price = Double.parseDouble(tmp[1]);
-			int quantity = Integer.parseInt(tmp[2]);
-            String eventName = tmp[3];
+			double price = Double.parseDouble(tmp[2]);
+			int quantity = Integer.parseInt(tmp[3]);
+            String eventName = tmp[4];
 
-			//User newBuyer = findUser(buyer);
+			User newBuyer = findUser(buyer);
             User newSeller = findUser(seller);
 
-            Ticket newTicket = new Ticket(newSeller, price, quantity, eventName);
+            Ticket newTicket = new Ticket(newSeller, newBuyer, price, quantity, eventName);
 			ticketList.add(newTicket);
 		}
 	}
@@ -211,8 +211,9 @@ public class BackEnd {
         String event = currentTrans.substring(4,23);
         String numTickets = currentTrans.substring(38,41);
         double price = Double.parseDouble(currentTrans.substring(43,48));
+        userList.get(findUserPosition(seller)).sellTicket(price);
 
-        ticketList.add(event, seller, numTickets, price);
+        //ticketList.add(event, seller, numTickets, price);
  
 	}
 	
@@ -220,14 +221,13 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void addCredit(String currentTrans){
-    	S
     	String[] splited = currentTrans.split(" ");
     	String userName = splited[1];
     	String userType = currentTrans.substring(19,21);
     	Double creditToAdd = Double.parseDouble(currentTrans.substring(22,31));
-    	Double userCredit = userList[findUserPosition(userName)].getCredit();
+    	Double userCredit = userList.get(findUserPosition(userName)).getCredit();
     	Double newUserCredit = creditToAdd + userCredit;
-    	userList[findUserPosition(userName)].setCredit(newUserCredit);
+    	userList.get(findUserPosition(userName)).setCredit(newUserCredit);
     		
 	}
 	
@@ -275,7 +275,7 @@ public class BackEnd {
 		        String[] trans = currentTrans.split(" ");
         
         String buyer = trans[1];
-        String seller = trans[2]
+        String seller = trans[2];
         double credit = Double.parseDouble(trans[3]);
 
         //adding buyer's credit

@@ -55,6 +55,6 @@ public class Ticket{
     }
 
 	public String toString(){
-		return seller.getName() + "," + buyer.getName() + "," + String.valueOf(price) + "," + String.valueOf(quantity);
+		return seller.getName() + "," + buyer.getName() + "," + String.valueOf(price) + "," + String.valueOf(quantity) + "," + eventName;
 	}
 }
