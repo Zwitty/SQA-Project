@@ -121,9 +121,13 @@ public class BackEnd {
 			String seller = tmp[1];
 			double price = Double.parseDouble(tmp[2]);
 			int quantity = Integer.parseInt(tmp[3]);
+            String eventName = tmp[4];
 
-			//Ticket newTicket = new Ticket(type, name, credit);
-			//userList.add(newUser);
+			User newBuyer = findUser(buyer);
+            User newSeller = findUser(seller);
+
+            Ticket newTicket = new Ticket(newSeller, newBuyer, price, quantity, eventName);
+			ticketList.add(newTicket);
 		}
 	}
     
@@ -160,7 +164,12 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void buy(String currentTrans){
-		
+        String[] trans = currentTrans.split("_");
+        
+        String buyer = trans[2];
+        double price = Double.parseDouble(trans[4]);
+
+        userList.get(findUserPosition(buyer)).buyTicket(price);
 	}
 	
 	/* This method carries out the sell function.
