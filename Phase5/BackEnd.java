@@ -282,8 +282,8 @@ public class BackEnd {
 		        String[] trans = currentTrans.split(" ");
         
         String buyer = trans[1];
-        String seller = trans[2];
-        double credit = Double.parseDouble(trans[3]);
+        String seller = currentTrans.substring(19,34)
+        double credit = Double.parseDouble(currentTrans.substring(35,44));
 
         //adding buyer's credit
         double buyerCredit = userList.get(findUserPosition(buyer)).getCredit();
