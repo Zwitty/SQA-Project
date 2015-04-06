@@ -100,7 +100,7 @@ public class BackEnd {
 	/* Loads the previous tickts from the ticket file
 	 *
 	 */
-	public static void loadTickets(){
+	public static void loadTickets() throws IOException{
 		BufferedReader in;
 			in = new BufferedReader(new FileReader("tickets.txt"));
 	
@@ -110,7 +110,7 @@ public class BackEnd {
 		    lines.add(str);
 		}
 		// closes the transaction log file
-		in.close();
+		in.close(); 
 
 		// linesArray is our list of transactions to process
 		String[] linesArray = lines.toArray(new String[lines.size()]);
@@ -120,7 +120,7 @@ public class BackEnd {
 			String buyer = tmp[0];
 			String seller = tmp[1];
 			double price = Double.parseDouble(tmp[2]);
-			int quantity = Int.parseInt(tmp[3]);
+			int quantity = Integer.parseInt(tmp[3]);
 
 			//Ticket newTicket = new Ticket(type, name, credit);
 			//userList.add(newUser);
@@ -171,10 +171,14 @@ public class BackEnd {
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
 		
-		
+		String[] user = currentTrans.split("_");
+        
+        String type = user[1];
+        String name = user[2];
+        double credit = Double.parseDouble(user[3]);
 
-		
-		bw.write(content);
+        User newUser = new User(type, name, credit);
+		bw.write(newUser.toString());
 		bw.close();
 
 	}
