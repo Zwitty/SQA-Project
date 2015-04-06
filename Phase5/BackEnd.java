@@ -7,129 +7,136 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.*;
 
-public class BackEnd {
-	
-	//  variables
-	public static List<User> userList = new ArrayList<User>();
-	public static List<Ticket> ticketList = new ArrayList<Ticket>();
-	
-	public static void main(String[] args) throws IOException{
-		//System.out.println("Hello World");
-		//User test = new User("AA","MyUserName",10.00);
-		//System.out.println(test.getName());
+public class BackEnd {	
+    //  variables
+    public static List<User> userList = new ArrayList<User>();
+    public static List<Ticket> ticketList = new ArrayList<Ticket>();
 
+    public static void main(String[] args) throws IOException{
+        //System.out.println("Hello World");
+        //User test = new User("AA","MyUserName",10.00);
+        //System.out.println(test.getName());
+        loadUsers();
+        loadTickets();
+        runTransactions();
+        //System.out.println(userList.get(0).getName());
+    }
 
-		// Variables
-		String currentTrans; // Current Transaction that is being worked on
-		int j = 0; // Variable to parse through array of transactions 1 by 1
-		// Reads in the transaction log file for processing
-		BufferedReader in;
-			in = new BufferedReader(new FileReader("transactionlog.txt"));
-	
-		String str=null;
-		ArrayList<String> lines = new ArrayList<String>();
-		while((str = in.readLine()) != null){
-		    lines.add(str);
-		}
-		// closes the transaction log file
-		in.close();
+    /* Loads the previous users from the user file
+    *
+    */
+    public static void loadUsers() throws IOException{
+        BufferedReader in;
+            in = new BufferedReader(new FileReader("users.txt"));
 
-		// linesArray is our list of transactions to process
-		String[] linesArray = lines.toArray(new String[lines.size()]);
+        String str = null;
+        ArrayList<String> lines = new ArrayList<String>();
+        while((str = in.readLine()) != null){
+            lines.add(str);
+        }
+        // closes the transaction log file
+        in.close();
 
-		// While loop to keep the backend running until all transactions 
-		// have been completed
-		while(j < linesArray.length){
-			// Loads the next transaction line into currentTrans so we can work on it
-			currentTrans = linesArray[j];
-			// Variable to determine which transaction to complete buy sell, etc
-			String choice = currentTrans.substring(0,2);
-			
-			// If statement that processes which method to call to carry out
-			// separate functions of the backend. 
-			if (choice.equals("01") == true){
-				createUser(currentTrans);
-			} else if (choice.equals("02") == true) {
-				deleteUser(currentTrans);
-			} else if (choice.equals("03") == true) {
-				sell(currentTrans);
-			} else if (choice.equals("04") == true) {
-				buy(currentTrans);
-			} else if (choice.equals("05") == true) {
-				refund(currentTrans);
-			} else if (choice.equals("06") == true) {
-				addCredit(currentTrans);
-			} else {
-				System.out.println("Session Ended");
-			}
-			writeTo(currentTrans); // Writes the transaction into the daily merged transactions
-			j++; // incrementing j to continue moving through the list of transactions
-		} // end of while loop
-	}
+        // linesArray is our list of transactions to process
+        String[] linesArray = lines.toArray(new String[lines.size()]);
 
-	/* Loads the previous users from the user file
-	 *
-	 */
-	public static void loadUsers() throws IOException{
-		BufferedReader in;
-			in = new BufferedReader(new FileReader("users.txt"));
-	
-		String str = null;
-		ArrayList<String> lines = new ArrayList<String>();
-		while((str = in.readLine()) != null){
-		    lines.add(str);
-		}
-		// closes the transaction log file
-		in.close();
+        for(int i = 0; i < linesArray.length; i++){
+            String[] tmp = linesArray[i].split(",");
+            String type = tmp[0];
+            String name = tmp[1];
+            double credit = Double.parseDouble(tmp[2]);
 
-		// linesArray is our list of transactions to process
-		String[] linesArray = lines.toArray(new String[lines.size()]);
-		
-		for(int i = 0; i < linesArray.length; i++){
-			String[] tmp = linesArray[i].split(",");
-			String type = tmp[0];
-			String name = tmp[1];
-			double credit = Double.parseDouble(tmp[2]);
+            User newUser = new User(type, name, credit);
+            userList.add(newUser);
+        }
 
-			User newUser = new User(type, name, credit);
-			userList.add(newUser);
-		}
+    }
 
-	}
+    /* Loads the previous tickts from the ticket file
+    *
+    */
+    public static void loadTickets() throws IOException{
+        BufferedReader in;
+            in = new BufferedReader(new FileReader("tickets.txt"));
 
-	/* Loads the previous tickts from the ticket file
-	 *
-	 */
-	public static void loadTickets() throws IOException{
-		BufferedReader in;
-			in = new BufferedReader(new FileReader("tickets.txt"));
-	
-		String str = null;
-		ArrayList<String> lines = new ArrayList<String>();
-		while((str = in.readLine()) != null){
-		    lines.add(str);
-		}
-		// closes the transaction log file
-		in.close(); 
+        String str = null;
+        ArrayList<String> lines = new ArrayList<String>();
+        while((str = in.readLine()) != null){
+            lines.add(str);
+        }
+        // closes the transaction log file
+        in.close(); 
 
-		// linesArray is our list of transactions to process
-		String[] linesArray = lines.toArray(new String[lines.size()]);
-		
-		for(int i = 0; i < linesArray.length; i++){
-			String[] tmp = linesArray[i].split(",");
-			String buyer = tmp[1];
-			String seller = tmp[0];
-			double price = Double.parseDouble(tmp[2]);
-			int quantity = Integer.parseInt(tmp[3]);
+        // linesArray is our list of transactions to process
+        String[] linesArray = lines.toArray(new String[lines.size()]);
+
+        for(int i = 0; i < linesArray.length; i++){
+            String[] tmp = linesArray[i].split(",");
+            String seller = tmp[0];
+            String buyer = tmp[1];
+            double price = Double.parseDouble(tmp[2]);
+            int quantity = Integer.parseInt(tmp[3]);
             String eventName = tmp[4];
 
-			User newBuyer = findUser(buyer);
+            User newBuyer = findUser(buyer);
             User newSeller = findUser(seller);
 
             Ticket newTicket = new Ticket(newSeller, newBuyer, price, quantity, eventName);
-			ticketList.add(newTicket);
-		}
-	}
+            ticketList.add(newTicket);
+        }
+    }
+    
+    /* runs all the transactions
+     *
+     */
+    public static void runTransactions() throws IOException{
+// VariablesString currentTrans; // Current Transaction that is being worked on
+        String currentTrans; // Current Transaction that is being worked on
+        int j = 0; // Variable to parse through array of transactions 1 by 1
+        // Reads in the transaction log file for processing
+        BufferedReader in;
+            in = new BufferedReader(new FileReader("transactionlog.txt"));
+
+        String str=null;
+        ArrayList<String> lines = new ArrayList<String>();
+        while((str = in.readLine()) != null){
+            lines.add(str);
+        }
+        // closes the transaction log file
+        in.close();
+
+        // linesArray is our list of transactions to process
+        String[] linesArray = lines.toArray(new String[lines.size()]);
+
+        // While loop to keep the backend running until all transactions 
+        // have been completed
+        while(j < linesArray.length){
+        // Loads the next transaction line into currentTrans so we can work on it
+            currentTrans = linesArray[j];
+            // Variable to determine which transaction to complete buy sell, etc
+            String choice = currentTrans.substring(0,2);
+
+            // If statement that processes which method to call to carry out
+            // separate functions of the backend. 
+            if (choice.equals("01") == true){
+                createUser(currentTrans);
+            } else if (choice.equals("02") == true) {
+                deleteUser(currentTrans);
+            } else if (choice.equals("03") == true) {
+                sell(currentTrans);
+            } else if (choice.equals("04") == true) {
+                buy(currentTrans);
+            } else if (choice.equals("05") == true) {
+                refund(currentTrans);
+            } else if (choice.equals("06") == true) {
+                addCredit(currentTrans);
+            } else {
+                System.out.println("Session Ended");
+            }
+            writeTo(currentTrans); // Writes the transaction into the daily merged transactions
+            j++; // incrementing j to continue moving through the list of transactions
+        } // end of while loop
+    }
 
     /* returns the User object of a given username
      *
@@ -231,8 +238,8 @@ public class BackEnd {
     	String[] splited = currentTrans.split(" ");
     	String userName = splited[1];
     	String userType = currentTrans.substring(19,21);
-    	Double creditToAdd = Double.parseDouble(currentTrans.substring(22,31));
-    	Double userCredit = userList.get(findUserPosition(userName)).getCredit();
+    	double creditToAdd = Double.parseDouble(currentTrans.substring(22,31));
+    	double userCredit = userList.get(findUserPosition(userName)).getCredit();
     	Double newUserCredit = creditToAdd + userCredit;
     	userList.get(findUserPosition(userName)).setCredit(newUserCredit);
     		

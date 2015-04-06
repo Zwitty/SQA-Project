@@ -1,2 +1,1 @@
-AA,userName,10.00
-
+AA,adminUser,100.00
