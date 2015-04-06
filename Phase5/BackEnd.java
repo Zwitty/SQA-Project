@@ -139,6 +139,22 @@ public class BackEnd {
         }
         return null;
     }
+    
+    /* returns the position in the list of a given username
+     *
+     */
+    public static int findUserPosition(String userName){
+        int count = 0;
+        for(User i : userList){
+            if(i.getName().equals(userName)){
+                return count;
+            }else{
+                count ++;
+            }
+        }
+        return -1;
+
+    }
 
 	/* This method carries out the buy function.
 	 * @param: currentTrans is the transaction that is being worked on
