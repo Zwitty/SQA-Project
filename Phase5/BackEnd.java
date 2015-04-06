@@ -208,13 +208,11 @@ public class BackEnd {
 	    String[] trans = currentTrans.split(" ");
         
         String seller = currentTrans.substring(24,37);
-        seller.trim(); // trims the whitespaces at the end of seller
         String event = currentTrans.substring(4,23);
-        event.trim(); // trims whitespaces at the end of event
-        int numTickets = Integer.parseInt(currentTrans.substring(38,41));
+        String numTickets = currentTrans.substring(38,41);
         double price = Double.parseDouble(currentTrans.substring(43,48));
 
-        ticetList.add(findUserPosition(seller)).sellTicket(price);
+        ticketList.add(event, seller, numTickets, price);
  
 	}
 	
