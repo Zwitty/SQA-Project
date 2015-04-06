@@ -218,15 +218,14 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void addCredit(String currentTrans){
-    	String[] trans = currentTrans.split("_");
-
-    	String userName = trans[1];
-    	String userType = trans[2];
-    	Double creditToAdd = Double.parseDouble(trans[3]);
-        
-        Double userCredit = userList.get(findUserPosition(userName)).getCredit();
+    	S
+    	String[] splited = currentTrans.split(" ");
+    	String userName = splited[1];
+    	String userType = currentTrans.substring(19,21);
+    	Double creditToAdd = Double.parseDouble(currentTrans.substring(22,31));
+    	Double userCredit = userList[findUserPosition(userName)].getCredit();
     	Double newUserCredit = creditToAdd + userCredit;
-    	userList.get(findUserPosition(userName)).setCredit(newUserCredit);
+    	userList[findUserPosition(userName)].setCredit(newUserCredit);
     		
 	}
 	
@@ -234,7 +233,7 @@ public class BackEnd {
 	 * @param: currentTrans is the transaction that is being worked on
 	 */
 	public static void deleteUser(String currentTrans) {
-	    String[] trans = currentTrans.split("_");
+	    String[] trans = currentTrans.split(" ");
 
         String deletedUser = trans[1];
 
