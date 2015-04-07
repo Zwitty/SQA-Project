@@ -220,9 +220,10 @@ public class BackEnd {
 	    String[] trans = currentTrans.split(" ");
         
         String seller = currentTrans.substring(24,37);
-        String event = currentTrans.substring(4,23);
+        String event = currentTrans.substring(3,23);
         String numTickets = currentTrans.substring(38,41);
-        double price = Double.parseDouble(currentTrans.substring(43,48));
+        double price = Double.parseDouble(currentTrans.substring(42,48));
+        System.out.println(userList);
         userList.get(findUserPosition(seller)).sellTicket(price);
 
         //ticketList.add(event, seller, numTickets, price);

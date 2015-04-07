@@ -59,4 +59,7 @@ public class BackEndTest extends TestCase {
         assertEquals("User Position",0, BackEnd.findUserPosition("userA"), 0);
     }
 
+    public void testrunTransaction() throws IOException{
+        BackEnd.runTransactions();
+    }
 }
