@@ -4,28 +4,29 @@ import static org.junit.Assert.*;
 import java.io.*;
 public class BackEndTest extends TestCase {
 
-    public void testMain() {
-        //fail("Not yet implemented");
+    public void testloadUsers() throws IOException {
+        BackEnd.loadUsers();
+        assertNotNull(BackEnd.userList);
     }
 
-    public void testloadUsers() {
-       // setSeller("James");
-       // assertEquals("James", seller);
+    public void testloadTickets() throws IOException {
+        BackEnd.loadTickets();  
+        assertNotNull(BackEnd.ticketList);
     }
 
-    public void testloadTickets() {
-       // setBuyer("Matt");
-       // asserEquals("Matt", buyer);
-    }
+    public void testfindTicket() throws IOException {
+        User a = new User("FS", "userA", 100.00);
+        User b = new User("SS", "userB", 100.00);
+        Ticket tick = new Ticket(a, b, 10.00, 2, "TheWho");
+        
+        BackEnd.loadUsers();
+        BackEnd.loadTickets();
+        BackEnd.userList.add(a);
+        BackEnd.userList.add(b);
+        BackEnd.ticketList.add(tick);
 
-    public void testrunTransactions() {
-        // setPrice(200);
-        // assertEquals(200, price);
-    }
-
-    public void testfindTicket() {
-        // setQuantity(4);
-        // assertEquals(4, quantity);
+        
+        assertEquals("TheWho", BackEnd.findTicket("TheWho").getEventName());
     }
 
     public void testfindTicketPosition() {
@@ -33,6 +34,7 @@ public class BackEndTest extends TestCase {
         // assertEquals("Nine Inch Nails", event);
     }
 
+    
     public void testfindUser() {
         // setSeller("James");
         // assertEquals("James", getSeller());
@@ -44,18 +46,12 @@ public class BackEndTest extends TestCase {
     }
 
     public void testbuy() {
-        // setPrice(200);
-        // assertEquals(200, getPrice());
- }
+    }
 
     public void testsell() {
-        // setQuantity(4);
-        // assertEquals(4, getQuantity());
     }
 
     public void testaddCredit() {
-        // setEvent("Nine Inch Nails");
-        // assertEquals("Nine Inch Nails" , getEvent());
     }
 
     public void testdeleteUser(){

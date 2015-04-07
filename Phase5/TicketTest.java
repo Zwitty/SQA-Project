@@ -4,57 +4,93 @@ import static org.junit.Assert.*;
 import java.io.*;
 public class TicketTest extends TestCase {
 
-    public void testTicket() {
-        //fail("Not yet implemented");
-    }
+	public void testTicket() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100.0, 4, "Nine Inch Nails");
+		assertEquals("James" , ticket.seller.name);
+		assertEquals("Matt", ticket.buyer.name);
+		assertEquals(100.0, ticket.price);
+		assertEquals(4, ticket.quantity);
+	}
 
-    public void testSetSeller() {
-       // setSeller("James");
-       // assertEquals("James", seller);
-    }
+	@Test
+	public void testSetSeller() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals("James", ticket.seller.name);
+	}
 
-    public void testSetBuyer() {
-       // setBuyer("Matt");
-       // asserEquals("Matt", buyer);
-    }
+	@Test
+	public void testSetBuyer() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals("Matt", ticket.buyer.name);
+	}
 
-    public void testSetPrice() {
-        // setPrice(200);
-        // assertEquals(200, price);
-    }
+	@Test
+	public void testSetPrice() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100.0, 2, "Nine Inch Nails");
+		assertEquals(100.0, ticket.price);
+	}
 
-    public void testSetQuantity() {
-        // setQuantity(4);
-        // assertEquals(4, quantity);
-    }
+	@Test
+	public void testSetQuantity() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals(2, ticket.quantity);
+	}
 
-    public void testSetEventName() {
-        // setEvent("Nine Inch Nails");
-        // assertEquals("Nine Inch Nails", event);
-    }
+	@Test
+	public void testSetEventName() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals("Nine Inch Nails", ticket.eventName);
+	}
 
-    public void testGetSeller() {
-        // setSeller("James");
-        // assertEquals("James", getSeller());
-    }
+	@Test
+	public void testGetSeller() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals("James", ticket.getSeller().name);
+	}
 
-    public void testGetBuyer() {
-        // setBuyer("Matt");
-        // assertEquals("Matt", getBuyer());
-    }
+	@Test
+	public void testGetBuyer() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals("Matt", ticket.getBuyer().name);
+	}
 
-    public void testGetPrice() {
-        // setPrice(200);
-        // assertEquals(200, getPrice());
- }
+	@Test
+	public void testGetPrice() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100.0, 2, "Nine Inch Nails");
+		assertEquals(100.0, ticket.getPrice());
+	}
 
-    public void testGetQuantity() {
-        // setQuantity(4);
-        // assertEquals(4, getQuantity());
-    }
+	@Test
+	public void testGetQuantity() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals(2, ticket.getQuantity());
+	}
 
-    public void testGetEventName() {
-        // setEvent("Nine Inch Nails");
-        // assertEquals("Nine Inch Nails" , getEvent());
-    }
+	@Test
+	public void testGetEventName() {
+		User james = new User("FS", "James", 1000.00);
+		User matt = new User("SS", "Matt", 1000.00);
+		Ticket ticket = new Ticket(james, matt, 100, 2, "Nine Inch Nails");
+		assertEquals("Nine Inch Nails" , ticket.getEventName());
+	}
 }
