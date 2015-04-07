@@ -13,14 +13,11 @@ public class BackEnd {
     public static List<Ticket> ticketList = new ArrayList<Ticket>();
 
     public static void main(String[] args) throws IOException{
-        //System.out.println("Hello World");
-        //User test = new User("AA","MyUserName",10.00);
-        //System.out.println(test.getName());
         loadUsers();
         loadTickets();
         runTransactions();
         writeUsers();
-        //System.out.println(userList.get(0).getName());
+        writeTickets();
     }
 
     /* Loads the previous users from the user file
