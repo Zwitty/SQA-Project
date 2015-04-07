@@ -24,57 +24,39 @@ public class BackEndTest extends TestCase {
         BackEnd.userList.add(a);
         BackEnd.userList.add(b);
         BackEnd.ticketList.add(tick);
-
         
         assertEquals("TheWho", BackEnd.findTicket("TheWho").getEventName());
     }
 
-    public void testfindTicketPosition() {
-        // setEvent("Nine Inch Nails");
-        // assertEquals("Nine Inch Nails", event);
+    public void testfindTicketPosition() throws IOException{
+        
+        User a = new User("FS", "userA", 100.00);
+        User b = new User("SS", "userB", 100.00);
+        Ticket tick = new Ticket(a, b, 10.00, 2, "TheWho");
+        
+        BackEnd.userList.add(a);
+        BackEnd.userList.add(b);
+        BackEnd.ticketList.add(tick);
+        
+        assertEquals("Ticket Position", 0, BackEnd.findTicketPosition("TheWho"), 0);
     }
 
     
-    public void testfindUser() {
-        // setSeller("James");
-        // assertEquals("James", getSeller());
+    public void testfindUser() throws IOException {
+        User a = new User("FS", "userA", 100.00);
+        
+        BackEnd.userList.add(a);
+        
+        assertEquals("userA", BackEnd.findUser("userA").getName());
+    
     }
 
-    public void testfindUserPosition() {
-        // setBuyer("Matt");
-        // assertEquals("Matt", getBuyer());
+    public void testfindUserPosition() throws IOException{
+        User a = new User("FS", "userA", 100.00);
+        
+        BackEnd.userList.add(a);
+        
+        assertEquals("User Position",0, BackEnd.findUserPosition("userA"), 0);
     }
 
-    public void testbuy() {
-    }
-
-    public void testsell() {
-    }
-
-    public void testaddCredit() {
-    }
-
-    public void testdeleteUser(){
-
-    }
-
-    public void testcreateUser(){
-
-    }
-
-    public void testrefund(){
-
-    }
-
-    public void writeTo(){
-
-    }
-
-    public void writeUsers(){
-
-    }
-
-    public void writeTickets(){
-
-    }
 }
