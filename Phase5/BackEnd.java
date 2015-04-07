@@ -19,6 +19,7 @@ public class BackEnd {
         loadUsers();
         loadTickets();
         runTransactions();
+        writeUsers();
         //System.out.println(userList.get(0).getName());
     }
 
@@ -254,39 +255,30 @@ public class BackEnd {
         String deletedUser = trans[1];
 
         userList.remove(findUserPosition(deletedUser));
-	}
-	
-	/* This method creates new users and adds them to the user file
-	 * @param: currentTrans is the transaction that is being worked on
-	 */
-	public static void createUser(String currentTrans) throws IOException{
-		File file = new File("users.txt");
-
-		// if file doesn't exists, then create it
-		if (!file.exists()) {
-			file.createNewFile();
-		}
-
-		FileWriter fw = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bw = new BufferedWriter(fw);
-		
-		String[] user = currentTrans.split("_");
+    }
+    
+    /* This method creates new users and adds them to the user file
+     * @param: currentTrans is the transaction that is being worked on
+     */
+    public static void createUser(String currentTrans) throws IOException{
         
-        String type = user[1];
-        String name = user[2];
-        double credit = Double.parseDouble(user[3]);
+        String[] splited = currentTrans.split(" ");
+    	String userName = splited[1];
+    	String userType = currentTrans.substring(18,20);
+    	double credit = Double.parseDouble(currentTrans.substring(21,30));
+    	
+        
+        User newUser = new User(userType, userName, credit);
 
-        User newUser = new User(type, name, credit);
-		bw.write(newUser.toString());
-		bw.close();
+        userList.add(newUser);
 
-	}
-	
-	/* This method carries out the refund function
-	 * @param: currentTrans is the transaction that is being worked on
-	 */
-	public static void refund(String currentTrans){
-		        String[] trans = currentTrans.split(" ");
+    }
+    
+    /* This method carries out the refund function
+     * @param: currentTrans is the transaction that is being worked on
+     */
+    public static void refund(String currentTrans){
+        String[] trans = currentTrans.split(" ");
         
         String buyer = trans[1];
         String seller = currentTrans.substring(19,34);
@@ -311,16 +303,55 @@ public class BackEnd {
 		String content = currentTrans;
 		 
 		File file = new File("mergedDailyTransactions.txt");
+        // if file doesn't exists, then create it
+        if (!file.exists()) {
+        	file.createNewFile();
+        }
 
-		// if file doesn't exists, then create it
-		if (!file.exists()) {
-			file.createNewFile();
-		}
+        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(content);
+        bw.close();
+    }
 
-		FileWriter fw = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(content);
-		bw.close();
-	}
+    public static void writeUsers() throws IOException{
+        File file = new File("users.txt");
+        // if file doesn't exists, then create it
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fw);
+        
+        String write = "";
+
+        for(User i : userList){
+            write += '\n' + i.toString();
+        }
+
+        bw.write(write);
+        bw.close();
+    }
+
+    public static void writeTickets() throws IOException{
+        File file = new File("tickets.txt");
+        // if file doesn't exists, then create it
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fw);
+        
+        String write = "";
+
+        for(Ticket i : ticketList){
+            write += '\n' + i.toString();
+        }
+
+        bw.write(write);
+        bw.close();
+    }
 
 }
