@@ -58,8 +58,21 @@ public class BackEndTest extends TestCase {
         
         assertEquals("User Position",0, BackEnd.findUserPosition("userA"), 0);
     }
+    
+    public void testwriteUsers() throws IOException{
+        BackEnd.loadUsers();
+        BackEnd.writeUsers();
+    }
 
+    public void testwriteTickets() throws IOException{
+        BackEnd.loadTickets();
+        BackEnd.writeTickets();
+    }
+    
     public void testrunTransaction() throws IOException{
         BackEnd.runTransactions();
     }
+
+
+
 }

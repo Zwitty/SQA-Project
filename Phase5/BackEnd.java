@@ -325,7 +325,7 @@ public class BackEnd {
         String write = "";
 
         for(User i : userList){
-            write += '\n' + i.toString();
+            write +=  i.toString() + '\n';
         }
 
         bw.write(write);
@@ -345,7 +345,7 @@ public class BackEnd {
         String write = "";
 
         for(Ticket i : ticketList){
-            write += '\n' + i.toString();
+            write += i.toString()+ '\n';
         }
 
         bw.write(write);
